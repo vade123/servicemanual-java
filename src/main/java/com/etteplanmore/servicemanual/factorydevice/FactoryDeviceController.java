@@ -1,23 +1,20 @@
 package com.etteplanmore.servicemanual.factorydevice;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class FactoryDeviceController {
-
-    private final FactoryDeviceRepository repository;
-
-    FactoryDeviceController(FactoryDeviceRepository repository) {
-        this.repository = repository;
-    }
+	
+	@Autowired
+    private FactoryDeviceRepository repository;
 
     @GetMapping("/factorydevices")
-    List<FactoryDevice> all() {
+    Iterable<FactoryDevice> all() {
         return repository.findAll();
     }
 
