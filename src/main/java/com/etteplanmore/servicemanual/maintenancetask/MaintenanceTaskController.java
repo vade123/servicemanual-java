@@ -6,10 +6,12 @@ import com.etteplanmore.servicemanual.factorydevice.FactoryDevice;
 import com.etteplanmore.servicemanual.factorydevice.FactoryDeviceNotFoundException;
 import com.etteplanmore.servicemanual.factorydevice.FactoryDeviceRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,9 +27,17 @@ public class MaintenanceTaskController {
 	@Autowired
 	private FactoryDeviceRepository deviceRepository;
 	
+	private List<Sort.Order> getSortingRules() {
+		List<Sort.Order> rules = new ArrayList<>();
+		rules.add(new Sort.Order(Sort.Direction.ASC, "criticality"));
+		rules.add(new Sort.Order(Sort.Direction.DESC, "date"));
+		return rules;
+	}
+	
 	@GetMapping("/maintenancetasks")
 	Iterable<MaintenanceTask> all() {
-		return repository.findAll();
+		List<Sort.Order> rules = getSortingRules();
+		return repository.findAll(Sort.by(rules));
 	}
 	
 	@GetMapping("/maintenancetasks/{id}")
