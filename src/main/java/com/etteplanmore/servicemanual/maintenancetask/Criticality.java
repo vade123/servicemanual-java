@@ -1,5 +1,5 @@
 package com.etteplanmore.servicemanual.maintenancetask;
 
-public enum Criticality {
+enum Criticality {
 	critical, important, moderate;
 }
