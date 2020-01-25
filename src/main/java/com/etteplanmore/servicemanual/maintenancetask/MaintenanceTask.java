@@ -34,6 +34,9 @@ public class MaintenanceTask {
 		this.description = desc;
 		this.compeleted = false;
 	}
+	public Long getId() {
+		return this.id;
+	}
 	public Long getDeviceId() {
 		return this.device.getId();
 	}
@@ -48,5 +51,14 @@ public class MaintenanceTask {
 	}
 	public Boolean isCompeleted() {
 		return this.compeleted;
+	}
+	public void setCompeleted(Boolean value) {
+		this.compeleted = value;
+	}
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	public void setCriticality(Criticality value) {
+		this.criticality = value;
 	}
 };
