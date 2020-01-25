@@ -15,8 +15,8 @@ import com.etteplanmore.servicemanual.factorydevice.FactoryDevice;
 public class MaintenanceTask {
 	
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "deviceId")
 	private FactoryDevice device;
