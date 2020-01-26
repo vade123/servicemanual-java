@@ -12,12 +12,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 public class MaintenanceTaskController {
@@ -42,8 +44,9 @@ public class MaintenanceTaskController {
 				.orElseThrow(() -> new MaintenanceTaskNotFoundException(id));
 	}
 	
+	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/maintenancetasks")
-	String add(@RequestParam Long deviceId,
+	MaintenanceTask add(@RequestParam Long deviceId,
 			@RequestParam Criticality criticality,
 			@RequestParam String desc) {
 		FactoryDevice device = deviceRepository.findById(deviceId)
@@ -51,7 +54,7 @@ public class MaintenanceTaskController {
 		
 		MaintenanceTask newTask = new MaintenanceTask(device, new Date(), criticality, desc);
 		repository.save(newTask);
-		return "Created maintenance task for device " + device.getId();
+		return newTask;
 	}
 	
 	@PutMapping("/maintenancetasks/{id}")
