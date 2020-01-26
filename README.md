@@ -10,7 +10,7 @@ A backend application for a pre-job interview assignment. A Spring boot applicat
 - Clone the project
 - Run `mvn package -DskipTests` in the project's root to build the project
 - Build the docker image with `docker image build -t service-manual .`
-- Run `docker-compose up` twice to start the application (something goes wrong on the first try but on the second try it works, I have no idea why).
+- Run `docker-compose up -d && docker-compose up` to start the application (something goes wrong on the first try but on the second try it works, hence the two commands. I have no idea why).
   On Windows, the app is running on docker-machines default ip, which can be found with `$ docker-machine ip`, for example `192.168.99.100:8080`. On Linux, the app is running on `localhost:8080`.
 - Initialize some factory devices with a `GET` request to `localhost:8080/init`. I know this is not a proper way to populate a database, I tried to do it with docker-compose and with a data.sql file but didn't get anything to work. Atleast the app can be tested.
 
