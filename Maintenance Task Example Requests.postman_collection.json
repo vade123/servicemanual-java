@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "87c42785-3686-4f1f-8a88-fecfe7752691",
+		"name": "Maintenance Task Example Requests",
+		"description": "Example requests for maintenance tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/maintenancetasks/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenancetasks/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenancetasks",
+						"all"
+					]
+				},
+				"description": "gets all maintenance tasks present in the application"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/maintenancetasks/all",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/maintenancetasks/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"maintenancetasks",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jan 2020 12:44:51 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 31,\n        \"date\": \"2020-01-26T12:44:26.560+0000\",\n        \"criticality\": \"critical\",\n        \"description\": \"tää laite on rikki\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 29,\n        \"date\": \"2020-01-26T12:32:34.592+0000\",\n        \"criticality\": \"critical\",\n        \"description\": \"tää laite on rikki\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 28,\n        \"date\": \"2020-01-26T11:55:41.044+0000\",\n        \"criticality\": \"critical\",\n        \"description\": \"rikki\",\n        \"compeleted\": false,\n        \"deviceId\": 5\n    },\n    {\n        \"id\": 20,\n        \"date\": \"2020-01-26T11:18:23.526+0000\",\n        \"criticality\": \"critical\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 2\n    },\n    {\n        \"id\": 25,\n        \"date\": \"2020-01-26T11:34:31.628+0000\",\n        \"criticality\": \"important\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 5\n    },\n    {\n        \"id\": 24,\n        \"date\": \"2020-01-26T11:34:14.569+0000\",\n        \"criticality\": \"important\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 5\n    },\n    {\n        \"id\": 23,\n        \"date\": \"2020-01-26T11:24:57.899+0000\",\n        \"criticality\": \"important\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 22,\n        \"date\": \"2020-01-26T11:19:15.265+0000\",\n        \"criticality\": \"important\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 21,\n        \"date\": \"2020-01-26T11:18:30.041+0000\",\n        \"criticality\": \"important\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 3\n    },\n    {\n        \"id\": 19,\n        \"date\": \"2020-01-26T11:12:28.906+0000\",\n        \"criticality\": \"moderate\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/maintenancetasks?deviceId=1&criticality=critical&desc=tää laite on rikki",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenancetasks?deviceId=1&criticality=critical&desc=tää laite on rikki",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenancetasks"
+					],
+					"query": [
+						{
+							"key": "deviceId",
+							"value": "1",
+							"description": "identification of a device"
+						},
+						{
+							"key": "criticality",
+							"value": "critical",
+							"description": "criticality level (critical, important, moderate)"
+						},
+						{
+							"key": "desc",
+							"value": "tää laite on rikki",
+							"description": "description of the task"
+						}
+					]
+				},
+				"description": "creates a new maintenance task for device 1 with criticality \"critical\" and description \"tää laite on rikki\". Parameters deviceId, criticality and desc have to be present."
+			},
+			"response": [
+				{
+					"name": "localhost:8080/maintenancetasks?deviceId=1&criticality=critical&desc=tää laite on rikki",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/maintenancetasks?deviceId=1&criticality=critical&desc=tää laite on rikki",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"maintenancetasks"
+							],
+							"query": [
+								{
+									"key": "deviceId",
+									"value": "1",
+									"description": "identification of a device"
+								},
+								{
+									"key": "criticality",
+									"value": "critical",
+									"description": "criticality level (critical, important, moderate)"
+								},
+								{
+									"key": "desc",
+									"value": "tää laite on rikki",
+									"description": "description of the task"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jan 2020 12:50:06 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 32,\n    \"date\": \"2020-01-26T12:50:06.029+0000\",\n    \"criticality\": \"critical\",\n    \"description\": \"tää laite on rikki\",\n    \"compeleted\": false,\n    \"deviceId\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/maintenancetasks/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenancetasks/32",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenancetasks",
+						"32"
+					]
+				},
+				"description": "gets a single maintenance task identified by id (32 in the example)"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/maintenancetasks/31",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/maintenancetasks/31",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"maintenancetasks",
+								"31"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jan 2020 12:45:19 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 31,\n    \"date\": \"2020-01-26T12:44:26.560+0000\",\n    \"criticality\": \"critical\",\n    \"description\": \"tää laite on rikki\",\n    \"compeleted\": false,\n    \"deviceId\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/maintenancetasks/{id}?criticality=moderate&compeleted=true",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenancetasks/32?criticality=moderate&compeleted=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenancetasks",
+						"32"
+					],
+					"query": [
+						{
+							"key": "criticality",
+							"value": "moderate",
+							"description": "level of criticality (critical, important, moderate)"
+						},
+						{
+							"key": "compeleted",
+							"value": "true",
+							"description": "is the task completed"
+						},
+						{
+							"key": "desc",
+							"value": "juu jep",
+							"description": "description of the task",
+							"disabled": true
+						}
+					]
+				},
+				"description": "updates a single maintenance task identified by id (32 in the example), fields which can be updated are criticality, completed, and description, all parameters do not have to be present"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/maintenancetasks/32?criticality=moderate&compeleted=true",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/maintenancetasks/32?criticality=moderate&compeleted=true",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"maintenancetasks",
+								"32"
+							],
+							"query": [
+								{
+									"key": "criticality",
+									"value": "moderate",
+									"description": "level of criticality (critical, important, moderate)"
+								},
+								{
+									"key": "compeleted",
+									"value": "true",
+									"description": "is the task completed"
+								},
+								{
+									"key": "desc ",
+									"value": "juu jep",
+									"description": "description of the task",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jan 2020 12:53:52 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "Updated maintenance task 32"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/maintenancetasks/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenancetasks/32",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenancetasks",
+						"32"
+					]
+				},
+				"description": "deletes a single maintenance task identified by id (32 in the example)"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/maintenancetasks/32",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/maintenancetasks/32",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"maintenancetasks",
+								"32"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jan 2020 12:55:40 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "Deleted maintenance task 32"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/maintenancetasks?deviceId=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenancetasks?deviceId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenancetasks"
+					],
+					"query": [
+						{
+							"key": "deviceId",
+							"value": "1",
+							"description": "identification of a device"
+						}
+					]
+				},
+				"description": "gets all maintenance tasks for a single factory device, identified by id (1 in the example). Parameter deviceId has to be present."
+			},
+			"response": [
+				{
+					"name": "localhost:8080/maintenancetasks?deviceId=1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/maintenancetasks?deviceId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"maintenancetasks"
+							],
+							"query": [
+								{
+									"key": "deviceId",
+									"value": "1",
+									"description": "identification of a device"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jan 2020 12:59:15 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 31,\n        \"date\": \"2020-01-26T12:44:26.560+0000\",\n        \"criticality\": \"critical\",\n        \"description\": \"tää laite on rikki\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 29,\n        \"date\": \"2020-01-26T12:32:34.592+0000\",\n        \"criticality\": \"critical\",\n        \"description\": \"tää laite on rikki\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 23,\n        \"date\": \"2020-01-26T11:24:57.899+0000\",\n        \"criticality\": \"important\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 22,\n        \"date\": \"2020-01-26T11:19:15.265+0000\",\n        \"criticality\": \"important\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    },\n    {\n        \"id\": 19,\n        \"date\": \"2020-01-26T11:12:28.906+0000\",\n        \"criticality\": \"moderate\",\n        \"description\": \"rikki on\",\n        \"compeleted\": false,\n        \"deviceId\": 1\n    }\n]"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
