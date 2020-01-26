@@ -1,0 +1,21 @@
+version: "3"
+services:
+  service-manual:
+    image: service-manual
+    ports:
+      - "8080:8080"
+    networks:
+      - service-manual
+    depends_on:
+      - servicemanualdb
+ 
+  servicemanualdb:
+    image: mysql:8
+    networks:
+      - service-manual
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=servicemanual  
+
+networks:
+  service-manual: 
