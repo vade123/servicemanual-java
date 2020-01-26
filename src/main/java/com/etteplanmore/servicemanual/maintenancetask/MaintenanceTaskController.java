@@ -12,12 +12,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 public class MaintenanceTaskController {
@@ -28,16 +30,11 @@ public class MaintenanceTaskController {
 	@Autowired
 	private FactoryDeviceRepository deviceRepository;
 	
-	private List<Sort.Order> getSortingRules() {
+	@GetMapping("/maintenancetasks/all")
+	Iterable<MaintenanceTask> all() {
 		List<Sort.Order> rules = new ArrayList<>();
 		rules.add(new Sort.Order(Sort.Direction.ASC, "criticality"));
-		rules.add(new Sort.Order(Sort.Direction.DESC, "date"));
-		return rules;
-	}
-	
-	@GetMapping("/maintenancetasks")
-	Iterable<MaintenanceTask> all() {
-		List<Sort.Order> rules = getSortingRules();
+		rules.add(new Sort.Order(Sort.Direction.DESC, "date"));;
 		return repository.findAll(Sort.by(rules));
 	}
 	
@@ -48,17 +45,19 @@ public class MaintenanceTaskController {
 	}
 	
 	@PostMapping("/maintenancetasks")
-	String addNewMaintenanceTask(@RequestParam Long deviceId, @RequestParam Criticality criticality, @RequestParam String desc) {
+	String add(@RequestParam Long deviceId,
+			@RequestParam Criticality criticality,
+			@RequestParam String desc) {
 		FactoryDevice device = deviceRepository.findById(deviceId)
 				.orElseThrow(() -> new FactoryDeviceNotFoundException(deviceId));
 		
 		MaintenanceTask newTask = new MaintenanceTask(device, new Date(), criticality, desc);
 		repository.save(newTask);
-		return "Created";
+		return "Created maintenance task for device " + device.getId();
 	}
 	
 	@PutMapping("/maintenancetasks/{id}")
-	String updateMaintenanceTask(@PathVariable Long id,
+	String update(@PathVariable Long id,
 			@RequestParam(required=false) Criticality criticality,
 			@RequestParam(required=false) String desc,
 			@RequestParam(required=false) Boolean completed) {
@@ -76,16 +75,23 @@ public class MaintenanceTaskController {
 			task.setCompeleted(completed);
 		}
 		repository.save(task);
-		
-		return "Updated";
+		return "Updated maintenance task " + task.getId();
 	}
 	
 	@DeleteMapping("/maintenancetasks/{id}")
-	String deleteMaintenanceTask(@PathVariable Long id) {
+	String delete(@PathVariable Long id) {
 		if (!repository.existsById(id)) {
 			throw new MaintenanceTaskNotFoundException(id);
 		}
 		repository.deleteById(id);
-		return "Deleted";
+		return "Deleted maintenance task " + id;
+	}
+	
+	@GetMapping("/maintenancetasks")
+	Iterable<MaintenanceTask> findByDevice(@RequestParam Long deviceId) {
+		if (!deviceRepository.existsById(deviceId)) {
+			new FactoryDeviceNotFoundException(deviceId);
+		}
+		return repository.findByDeviceId(deviceId);
 	}
 }
