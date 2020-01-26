@@ -88,7 +88,7 @@ public class MaintenanceTaskController {
 	@GetMapping("/maintenancetasks")
 	Iterable<MaintenanceTask> findByDevice(@RequestParam Long deviceId) {
 		if (!deviceRepository.existsById(deviceId)) {
-			new FactoryDeviceNotFoundException(deviceId);
+			throw new FactoryDeviceNotFoundException(deviceId);
 		}
 		return repository.findByDeviceId(deviceId);
 	}
