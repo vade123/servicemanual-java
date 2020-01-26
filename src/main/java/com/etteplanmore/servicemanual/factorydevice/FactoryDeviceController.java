@@ -28,7 +28,7 @@ public class FactoryDeviceController {
             .orElseThrow(() -> new FactoryDeviceNotFoundException(id));
     }
     
-    @GetMapping("/factorydevices/init")
+    @GetMapping("/init")
     String init() {
     	final List<FactoryDevice> devices = Arrays.asList(
                 new FactoryDevice("Device X", 2001, "type 10"),
