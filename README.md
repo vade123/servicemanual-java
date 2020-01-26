@@ -1,5 +1,5 @@
 # servicemanual-java
-A backend application for a pre-interview assigment. A Spring boot application using MySQL database. My first time touching Java and dockerizing an app.
+A backend application for a pre-job interview assingment. A Spring boot application using MySQL database. My first time touching Java and dockerizing an app (which didn't go too well).
 
 ## Requirements
 - [JDK 13](https://www.oracle.com/technetwork/java/javase/downloads/jdk13-downloads-5672538.html)
